@@ -171,71 +171,229 @@ How can you modify bash's history behaviour
 
 Display all the commands entered so far, now, try to run a particular command from the history list without typing that command.
 
+--> $ history
+    $ !(sequence number of particular command)
+
 NOTE:- TAB key is your friend when it comes to command completion and having long file and directory names autocompleted at the bash prompt for you. JUST BE LAZY AND USE TAB KEY FOR AUTO COMPLETION ;-)
 
 What are the different types of shell and where are they used and how do we use them?
 
+--> Bourne shell(sh): default shell for Solaris OS.it is also used as default shell for all Solaris system administration scripts.
+		      it is preferred shell for shell programming bcz of its compactness and speed.
+		* full path name is /bin/sh and /sbin/sh
+		* default prompt for non-root user is $, root user is #
+    C shell(csh): incorporated features for interactive use such as aliases and command history.
+                  includes convenient programing features(built in arithmetic and C programming syntax)
+		* full path name is /bin/csh
+		* non root user is %, root user is #
+    Korn shell(ksh): is a superset of bourne shell. supports everything in bourne shell
+		     also includes convenient programming features like c shell. it is faster than c shell.
+		     runs scripts written for bourne shell
+		* command path name /bin/ksh
+		* non root user $, root user #
+    GNU Bourne-Again shell(bash): compatible to the bourne shell
+				  incorporates usefull features like c shell and korn shell
+				  has arrows key that are automatically mapped for command recall and edditing
+		* command path name /bin/bash
+		* non root user is bash-<shellversionnumber>$
+		* root user is bash-<shellversionnumber>#
+
 What is the difference between login shell and non-login shell?
+
+--> if you open a shell or terminal if its asks credentials before it gives your a prompt, its a login shell
+    if it doesnot, and you use straight away, its non login shell.
+
+    $ echo $0
+    o/p: -bash (login shell) 
+	  bash (non login shell)
+
 
 How do we start login shell and non-login shell?
 
+--> In the sidebar select your current profile -> Select Command Under the Command label -> select Run command as a login shell.
+   
 What happens when you start a login shell (which files are read and used and Why)?
 
 What happens when you start a non-login shell (Which files are read and used and Why)?
 
 What are Shell Configuration Files, why do we need it?
 
+--> shell configurations files are executed automatically when login and logout of shell.
+    system wide configuration files(/etc/profile,/etc/bashrc)
+    user configuration files(~/.bash_profile,~/.bash_login,~/.bash_logout)
+
 Explain the Order of file usage from the system/user's home directory when user logs in to the System.
+
+--> create a file( touch)
+    listing files (ls)
+    view file and modify (cat)
+    file type (file)
+    copying file (cp)
+    moving and renamming(mv)
+    deleting file (rm)
 
 What are Shell Variables, list major shell variables and what do they represent?
 
+--> shell variable is a special variable that is set by the shell and is reqguired by the shell in order to function correctly. some of the variables are 
+    environment varibles others are local varibles.
+    $HOME - home directory path
+    $PATH - list of directories to search commands
+    $USER - user name
+    
+
 How we see all our env variables?
 
+--> $ printenv
+
 How we see all env variables in alphabical order?
+
+--> $ printenv | sort
 
 What Format does the env var and its values are stored?
 
 How do you create your own varible?
 
+--> $ n=10
+    $ echo $n
+    10
+
 How do you start a new bash shell?
 
+--> goto the folder where you want to open bash shell. in address bar type bash and enter. 
+
 Difference between Local/Shell variables to Global Variable
+
+--> local/shell variables are visible in the shell where it was defined
+    global variables are visible for any running process that runs from shell
 
 Making a variable accessible from other the shell in the system.
 
 Show the real life use case of exporting a variable
 
+--> $ car=audi
+    $ export car
+    $ printenv car
+    o/p: audi
+
 Convert the above script file into a command, The file should run with "myappp" instead of "myapp.sh"
 
 What is Globbing? Explain in depth with examples?
 
+--> globbing is an operation that recognizes the wildcard pattern and expands it into its path name
+    wildcards pattern are charecters like ?,*,[ . it perform action on more than one file having same pattern
+
+    ex: office.*
+	the result of this search is set of all file names that exist in storage medium with office.to leftof the period
+	such as office.txt,office.ppt,office.docs, office.imge ......
+
 List all entries with extension ".sh"
+
+--> find -type f \( -name "*.sh" \) 
+		or
+    ls *.sh
 
 List all entries with numbers in it.
 
+--> ls *+([0-9])*
+
 List all entries that starts with a character and ends with a number
 
-List all entries that name length more than 5 characters
+--> ls [a-z]*[0-9]
 
+List all entries that name length more than 5 characters
 What is Quoting? and Why do we need it?
 
+-->Quoting is used to remove the special meaning of certain characters or words to the shell. 
+   it can be used to disable special treatment for special characters, to prevent reserved words from being recognized as such,
+   and to prevent parameter expansion.
+   there are 3 quoting machanisms
+	escape charecter : how to remove special meaning from single charecter.
+	single quotes: how to inhibit all interpretation of sequence of charecters.
+	double quotes: how to suppress most of the interpretation of a sequence of characters.
+
 Write few(minimum 3) unique examples that shows, how a particular problem is solved using Quoting.
+
+--> $ echo hello; word        $ echo hello\; word   (escape charecter)
+    o/p: hello		      o/p: hello; word
+	 word:not found
+
+    $ var=hello
+    $ echo '$var hello <-$1500 **> & ;( ^ done'     (single quotes)
+    o/p: $var hello <-$1500 **> & ;( ^ done
+
+    $ VAR=ZARA
+    $ echo "$VAR owes <-\$1500.**>; [ as of (`date +%m/%d`) ]"		(double quotes)
+    o/p: ZARA owes <-$1500.**>; [ as of (10/06) ]
+    
 
 How do you find a particular files/directories based on a particular search criteria?
 HINT:- look for commands -> locate, find and whereis
 
+--> $ find -name \<files/directory>
+
 Write major difference between locate, find and whereis?
+
+--> whereis: will search only particular paths.
+    find : will search real files recursively down a given directory
+    locate: will search database without requiring specific directory
+	if you have saved a file before updating database, find will find it, but locate won't.
 
 How Globbing is different from locate, find and whereis?
 
+--> using globbing used to match the filenames or serching the content in a file. whereis, find, locate used for only files/directories
+
 Explain the Linux File System.
+
+--> structured collection of files on a disk drive or a partition.
+    linux file system is generally a built-in layer of a Linux operating system used to handle the data management of the storage.
+    it helps to arrange the file on the disk storage. It manages the file name, file size, creation date, and much more information about a file.
+    linux file system has a hierarchal file structure as it contains a root directory and its subdirectories. 
+    all other directories can be accessed from the root directory
+
+		        kernel
+		 virtual file system
+	EXT3	HPFS	VFAT	EXT4	FreeBSD
+			hardware
 
 Explain absolute and Relative Paths
 
+--> absolute path: location of a file/directory from the root directory(/)
+		ex:/etc/hello.cong
+    relative path: path related to present working directory(pwd)
+		ex: pwd/new
+
 What are the different ways of creating a File in linux System? Write an example of each and the difference between them.
 
+--> touch:   easiest way to create a new file
+		 $ touch hello.txt   (it will create empty file)
+    >  : the system to output results into whatever you specify next. The target is usually a filename. 
+	 You can use this symbol by itself to create a new file
+		$ > file.txt   (creates a new empty file)
+   cat: It can be used to output the contents of several files, one file, or even part of a file.
+	 if the file doesn’t exist, the linux cat command will create it.
+		$ cat > cat.txt 
+   echo : whatever specified in command and puts a copy into a file
+		$ echo "echo file creat" > echo.txt
+   printf : works like echo command and its add some formatting functionality
+		$ printf "first\n second" > prin.txt
+			first
+			second
+   vi : oldest text editor in linux. directly editing text files
+		$ vi new.txt    (to save and exit press esc:x)
+   nano: is newer and much easier text editor to navigate
+		$ nano nano1.txt    (ctrl+o to save the changes, ctrl+x exit editor)
+	   
 In how many ways we can delete the files from linux system? write an example of each and teh difference between them.
+
+--> unlink: used to delete single file
+		$ uplink filename
+    rm: used to delete single file or multiple files
+		$ rm filename1 filename2
 
 Archiving files using linux command, write a command to archive set of files from linux commands.
 
+--> $ tar cf <name>.tar file1 file2 file3    (c-creation of new archive, f-specified archive file)
+
 Extract the archived files from the above step.
+ 
+--> $ tar xf <name>.tar  (x- extract archive , t-list of contents of archive
