@@ -1,0 +1,14 @@
+Develop a script that creates, sets and displays two variables to the terminal when run. 
+Within this script, add comments to explain what the script is doing, what each variable is and, using inline comments, what each command is doing.
+
+
+-----------------------------
+
+#!/bin/bash
+#general desription of script if dont use on first line it will treat all commonds are different
+
+COLOR="blue"  #variable is declared and assigned
+echo "sky is $COLOR"   # displays along with COLOR value in console
+STARTOFSCRIPT=`date`
+echo "start: $STARTOFSCRIPT"   # displays along with the date when its running
+
