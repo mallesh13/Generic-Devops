@@ -1,0 +1,46 @@
+Search online for the Python documentation for the len() function. It will be on a web page titled “Built-in Functions.” 
+Skim the list of other functions Python has, look up what the round() function does, and experiment with it in the interactive shell.
+
+
+
+Look up the round() and abs() functions on the Internet, and find out what they do. Experiment with them in the interactive shell.
+
+-------------------------------
+
+
+len() -  returns the length of any  iterable objects.
+	 returns the no of charecters of string
+    syntax: len(any iterable objecct)
+abs() - returns absolute value of number
+all() - returns true if all items in iterable object are true
+any() - returns true if any item in iterable object is true
+bin() - return binary version of number
+input() - allowing user input
+min() - returns smallest number in iterable
+open() - opens a file and returns file object
+print() - prints to output device
+range() - returns sequence of numbers starting from 0 and incresed by 1 by default
+sorted() - returns sorted list
+round() - rounds the number
+
+
+-------------------
+
+a="hello world"
+print(len(a))
+
+b=43.789
+print(round(b))
+
+c=-230
+print(abs(c))
+
+
+o/p:	11
+	43
+	230
+
+
+
+
+
