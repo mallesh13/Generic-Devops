@@ -1,0 +1,24 @@
+installing docker on linux instance :
+-------------------------------------
+
+-> update installed packages        sudo yum update -y
+-> install docker package           sudo yum install docker
+-> start docker 		    sudo service docker start
+-> add user to docker group 	    sudo usermod -a -G docker <user>
+-> verify the user can run 
+   docker without sudo command	    docker info
+
+
+
+--------------------------------------------------------------
+
+$ docker --version		-> 	display docker version
+$ docker ps			->	list only active containers
+$ docker ps -a			->	list all containers
+$ docker stop <containerid/name>->	stop a container
+$ docker rm <containerid/name>  ->	remove a stopped container
+$ docker rm -f <containerid/name>	->	force stop and remove conatiner
+$ docker rm -f $(docker ps-aq)	->	remove all containers
+
+-----------------------------------
+
