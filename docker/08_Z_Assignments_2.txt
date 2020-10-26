@@ -1,0 +1,40 @@
+Your company is ready to move forward with using Docker to run their applications. However, they have some complex container apps that can take advantage of the cluster management and orchestration features of Docker swarm. You have been asked to stand up a simple Docker swarm cluster to be used for some initial testing. A set of servers has already been provisioned for this purpose. The swarm cluster should meet the following criteria:
+
+One Swarm manager.
+Two worker nodes.
+All nodes should use Docker CE version 5:18.09.5~3-0~ubuntu-bionic.
+Both worker nodes should be joined to the cluster.
+Any non-root user should be able to run docker commands on all three servers.
+
+[NOTE: Write the series of commands to achieve above in this file below the question scenario with documentation]
+
+Good luck!
+
+
+-------------------------------------------------
+
+- create 3 linux ec2 intances
+
+- install docker on all nodes
+
+- $ sudo yum install docker
+  $ sudo service docker start
+  $ sudo usermod -a -G docker ec2-user (giving permissions to non-root users)
+
+- configure the manager node for swarm cluster	
+	$ docker swarm init --advertise-addr 172.31.33.29
+
+-configure two worker nodes to join cluster
+	$ docker swarm join --token SWMTKN-1-1rlw36ulonf2x22fkefn26wbhh4ud8stj0dnca1ctdml7om0sx-e7u9et6uv9t8cqhv00tzo45w1 172.31.33.29:2377
+
+- verify swarm cluster
+	$ docker node ls
+
+- deploying new services on cluster
+	$ docker service create --name my-web1 --publish 8081:80 --replicas 2 nginx
+
+- to check newly deployed services on cluster
+	$ docker service ls
+
+-	$ docker service ps my-web1 (list the tasks running as of specified services on cluster)
+
